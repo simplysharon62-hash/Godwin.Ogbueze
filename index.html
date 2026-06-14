@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Godwin Ogbueze — Salesforce Consultant & Administrator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy:   #0A0F1E;
@@ -41,7 +41,7 @@
     border-bottom: 1px solid var(--border);
   }
   .nav-logo {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 800; font-size: 1.1rem;
     color: var(--gold); letter-spacing: 0.04em;
     text-decoration: none;
@@ -97,7 +97,7 @@
     50%      { opacity:0.4; transform:scale(1.4); }
   }
   .hero h1 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(2.4rem, 5vw, 3.8rem);
     font-weight: 800; line-height: 1.08;
     margin-bottom: 1.2rem;
@@ -138,7 +138,7 @@
   .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 28px; }
   .stat-item { text-align: center; }
   .stat-num {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 2.4rem; font-weight: 800;
     color: var(--gold); line-height: 1;
     display: block;
@@ -167,7 +167,7 @@
     margin-bottom: 0.6rem;
   }
   .section-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(1.8rem, 3.5vw, 2.8rem);
     font-weight: 800; line-height: 1.15;
     margin-bottom: 1rem;
@@ -208,7 +208,7 @@
     font-size: 1.8rem; margin-bottom: 16px; display: block;
   }
   .service-card h3 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.1rem; font-weight: 700;
     margin-bottom: 10px; color: var(--white);
   }
@@ -263,7 +263,7 @@
     margin-bottom: 4px;
   }
   .exp-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.05rem; font-weight: 700;
     margin-bottom: 2px;
   }
@@ -292,7 +292,7 @@
     padding: 32px; text-align: center;
   }
   .result-num {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 3rem; font-weight: 800;
     color: var(--gold); line-height: 1;
     display: block; margin-bottom: 8px;
@@ -331,12 +331,12 @@
     width: 56px; height: 56px;
     background: var(--gold); color: var(--navy);
     border-radius: 50%;
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.2rem;
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 18px; position: relative; z-index: 1;
   }
   .process-step h4 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1rem; font-weight: 700; margin-bottom: 8px;
   }
   .process-step p { font-size: 0.84rem; color: var(--slate); line-height: 1.55; }
@@ -371,7 +371,7 @@
     padding: 40px;
   }
   .contact-form-card h3 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.3rem; font-weight: 700; margin-bottom: 24px;
   }
   .form-group { margin-bottom: 18px; }
@@ -396,7 +396,7 @@
     flex-wrap: wrap; gap: 16px;
   }
   .footer-logo {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--gold);
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1rem; color: var(--gold);
   }
   footer p { font-size: 0.82rem; color: var(--slate); }
   .footer-links { display: flex; gap: 20px; }
@@ -731,7 +731,7 @@
 <section id="industries">
   <div class="section-inner">
     <div class="eyebrow">Industries Served</div>
-    <h2 class="section-title">I've Worked Across<br>Your Industry</h2>
+    <h2 class="section-title">I've Worked Across<br>Many Industries</h2>
     <div class="divider"></div>
     <p class="section-sub">Deep cross-sector experience means I understand your workflows, compliance needs, and the unique way your team uses Salesforce.</p>
     <div class="industry-list">
@@ -821,17 +821,18 @@
 
       <div class="contact-form-card">
         <h3>Send Me a Project Brief</h3>
+        <form action="https://formspree.io/f/godwin.ogbueze@gmail.com" method="POST" id="contactForm">
         <div class="form-group">
-          <label>YOUR NAME</label>
-          <input type="text" placeholder="Jane Smith" />
+          <label for="name">YOUR NAME</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required />
         </div>
         <div class="form-group">
-          <label>EMAIL ADDRESS</label>
-          <input type="email" placeholder="jane@company.com" />
+          <label for="email">EMAIL ADDRESS</label>
+          <input type="email" id="email" name="email" placeholder="jane@company.com" required />
         </div>
         <div class="form-group">
-          <label>SERVICE NEEDED</label>
-          <select>
+          <label for="service">SERVICE NEEDED</label>
+          <select id="service" name="service">
             <option value="">Select a service…</option>
             <option>Salesforce Administration</option>
             <option>Flow Automation & Process Design</option>
@@ -846,15 +847,40 @@
           </select>
         </div>
         <div class="form-group">
-          <label>TELL ME ABOUT YOUR PROJECT</label>
-          <textarea placeholder="What's your Salesforce challenge? What does success look like?"></textarea>
+          <label for="message">TELL ME ABOUT YOUR PROJECT</label>
+          <textarea id="message" name="message" placeholder="What's your Salesforce challenge? What does success look like?" required></textarea>
         </div>
-        <a href="mailto:godwin.ogbueze@gmail.com" class="btn-primary" style="width:100%;text-align:center;display:block;padding:15px;">
+        <button type="submit" class="btn-primary" style="width:100%;text-align:center;display:block;padding:15px;border:none;cursor:pointer;font-size:0.95rem;">
           Send Message →
-        </a>
-        <p style="font-size:0.76rem;color:var(--slate);text-align:center;margin-top:12px;">
-          Typical response within 24 hours
-        </p>
+        </button>
+        <p id="form-status" style="font-size:0.76rem;color:var(--slate);text-align:center;margin-top:12px;">Typical response within 24 hours</p>
+        </form>
+        <script>
+          const form = document.getElementById('contactForm');
+          const status = document.getElementById('form-status');
+          form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const data = new FormData(form);
+            try {
+              const response = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+              });
+              if (response.ok) {
+                status.textContent = '✅ Message sent! Godwin will be in touch within 24 hours.';
+                status.style.color = '#4ade80';
+                form.reset();
+              } else {
+                status.textContent = '⚠️ Something went wrong. Please email directly: godwin.ogbueze@gmail.com';
+                status.style.color = '#f87171';
+              }
+            } catch {
+              status.textContent = '⚠️ Could not send. Please email: godwin.ogbueze@gmail.com';
+              status.style.color = '#f87171';
+            }
+          });
+        </script>
       </div>
     </div>
   </div>
