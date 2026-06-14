@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Godwin Ogbueze — Salesforce Consultant & Administrator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #0A0F1E;
+    --cloud:  #F0F4FF;
+    --white:  #FFFFFF;
+    --gold:   #C9A84C;
+    --gold-lt:#F0D080;
+    --slate:  #8892A4;
+    --card:   #111827;
+    --border: rgba(201,168,76,0.20);
+    --radius: 12px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 6%;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--gold); letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--slate); font-size: 0.88rem; text-decoration: none;
+    font-weight: 500; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy) !important;
+    padding: 8px 20px; border-radius: 6px; font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: var(--gold-lt) !important; color: var(--navy) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 6% 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 80% at 10% 20%, rgba(30,50,120,0.3) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid var(--border);
+    padding: 6px 14px; border-radius: 30px;
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--gold); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 1.4rem;
+  }
+  .badge::before {
+    content: ''; width: 7px; height: 7px;
+    background: var(--gold); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:0.4; transform:scale(1.4); }
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800; line-height: 1.08;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 span { color: var(--gold); display: block; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--slate);
+    max-width: 480px; margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 14px 30px; border-radius: 8px;
+    font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1.5px solid var(--border); color: var(--white);
+    padding: 14px 30px; border-radius: 8px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* hero stats card */
+  .hero-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px;
+  }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 28px; }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem; font-weight: 800;
+    color: var(--gold); line-height: 1;
+    display: block;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--slate); margin-top: 4px; letter-spacing: 0.04em; }
+  .cert-badge {
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(201,168,76,0.07);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px 18px;
+  }
+  .cert-icon {
+    width: 40px; height: 40px; background: var(--gold);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .cert-text p { font-size: 0.88rem; font-weight: 600; color: var(--white); }
+  .cert-text span { font-size: 0.76rem; color: var(--slate); }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 90px 6%; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800; line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--slate); max-width: 560px; line-height: 1.7; }
+  .divider {
+    width: 48px; height: 3px;
+    background: var(--gold); border-radius: 2px;
+    margin: 20px 0 50px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: #0D1221; }
+  .services-header { margin-bottom: 50px; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius);
+    padding: 30px;
+    transition: border-color 0.25s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .service-card:hover { border-color: var(--border); transform: translateY(-4px); }
+  .service-card:hover::after { opacity: 1; }
+  .service-icon {
+    font-size: 1.8rem; margin-bottom: 16px; display: block;
+  }
+  .service-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 10px; color: var(--white);
+  }
+  .service-card p { font-size: 0.88rem; color: var(--slate); line-height: 1.65; margin-bottom: 16px; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 0.72rem; font-weight: 600;
+    color: var(--gold); background: rgba(201,168,76,0.10);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 3px 10px; border-radius: 30px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--navy); }
+  .skills-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: start;
+  }
+  .skill-group { margin-bottom: 36px; }
+  .skill-group-title {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-pill {
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--cloud);
+    background: rgba(240,244,255,0.06);
+    border: 1px solid rgba(255,255,255,0.09);
+    padding: 6px 14px; border-radius: 30px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .skill-pill:hover { background: rgba(201,168,76,0.12); border-color: var(--border); }
+  .experience-timeline { }
+  .exp-item {
+    padding-left: 28px;
+    border-left: 2px solid var(--border);
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute; left: -6px; top: 5px;
+    width: 10px; height: 10px;
+    background: var(--gold); border-radius: 50%;
+  }
+  .exp-period {
+    font-size: 0.76rem; font-weight: 600; color: var(--gold);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .exp-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .exp-company { font-size: 0.88rem; color: var(--slate); margin-bottom: 12px; }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.86rem; color: var(--slate);
+    padding: 3px 0 3px 16px; position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--gold); font-size: 0.78rem; top: 4px;
+  }
+
+  /* ── RESULTS ── */
+  #results { background: #0D1221; }
+  .results-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+    margin-top: 50px;
+  }
+  .result-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px; text-align: center;
+  }
+  .result-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem; font-weight: 800;
+    color: var(--gold); line-height: 1;
+    display: block; margin-bottom: 8px;
+  }
+  .result-desc { font-size: 0.9rem; color: var(--slate); line-height: 1.5; }
+
+  /* ── INDUSTRIES ── */
+  #industries { background: var(--navy); }
+  .industry-list {
+    display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px;
+  }
+  .industry-item {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 12px 20px; border-radius: 8px;
+    font-size: 0.9rem; font-weight: 500;
+    transition: border-color 0.2s;
+  }
+  .industry-item:hover { border-color: var(--border); }
+  .industry-item span:first-child { font-size: 1.2rem; }
+
+  /* ── HOW IT WORKS ── */
+  #process { background: #0D1221; }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 24px; margin-top: 50px; position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 28px; left: 12.5%; right: 12.5%;
+    height: 1px; background: var(--border);
+  }
+  .process-step { text-align: center; padding: 0 10px; }
+  .step-num {
+    width: 56px; height: 56px;
+    background: var(--gold); color: var(--navy);
+    border-radius: 50%;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 18px; position: relative; z-index: 1;
+  }
+  .process-step h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 700; margin-bottom: 8px;
+  }
+  .process-step p { font-size: 0.84rem; color: var(--slate); line-height: 1.55; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  .contact-wrap {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  .contact-text h2 { margin-bottom: 1rem; }
+  .contact-text p { color: var(--slate); line-height: 1.7; margin-bottom: 2rem; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 18px;
+  }
+  .contact-detail-icon {
+    width: 40px; height: 40px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid var(--border); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink:0;
+  }
+  .contact-detail-text p { font-size: 0.8rem; color: var(--slate); margin-bottom: 2px; }
+  .contact-detail-text a,
+  .contact-detail-text span { font-size: 0.95rem; color: var(--white); font-weight: 500; text-decoration: none; }
+  .contact-detail-text a:hover { color: var(--gold); }
+
+  .contact-form-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+  }
+  .contact-form-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem; font-weight: 700; margin-bottom: 24px;
+  }
+  .form-group { margin-bottom: 18px; }
+  label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--slate); margin-bottom: 6px; letter-spacing: 0.04em; }
+  input, textarea, select {
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+    padding: 12px 16px; color: var(--white); font-family: 'Inter', sans-serif;
+    font-size: 0.92rem; transition: border-color 0.2s;
+    outline: none;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--gold); }
+  textarea { resize: vertical; min-height: 110px; }
+  select option { background: var(--card); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #070B14;
+    border-top: 1px solid var(--border);
+    padding: 36px 6%;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--gold);
+  }
+  footer p { font-size: 0.82rem; color: var(--slate); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 0.82rem; color: var(--slate); text-decoration: none; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .hero-grid, .skills-layout, .contact-wrap { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .results-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    nav .nav-links { display: none; }
+  }
+  @media (max-width: 560px) {
+    .results-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">GODWIN OGBUEZE</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="badge">Available for Contract Work</div>
+      <h1>
+        Salesforce Expert.<br>
+        <span>On Demand.</span>
+      </h1>
+      <p class="hero-sub">
+        Certified Salesforce Administrator with 8+ years building scalable CRM solutions 
+        across nonprofit, healthcare, education, and corporate sectors. 
+        I configure, automate, and optimize — so your team actually uses Salesforce.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Hire Me for Your Project</a>
+        <a href="#services" class="btn-outline">View Services</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="stat-grid">
+        <div class="stat-item">
+          <span class="stat-num">8+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">99%</span>
+          <span class="stat-label">Customer Satisfaction</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">25%</span>
+          <span class="stat-label">Retention Increase</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">100s</span>
+          <span class="stat-label">Orgs Onboarded</span>
+        </div>
+      </div>
+      <div class="cert-badge">
+        <div class="cert-icon">☁️</div>
+        <div class="cert-text">
+          <p>Salesforce Certified Administrator</p>
+          <span>Certified 2021 · Charlotte, NC · Remote Available</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="services-header">
+      <div class="eyebrow">What I Do</div>
+      <h2 class="section-title">Services Built for<br>Real Business Problems</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Every engagement is tailored. Whether you need a full CRM build, 
+      a targeted automation, or ongoing admin support — I meet you where you are.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-icon">⚙️</span>
+        <h3>Salesforce Administration</h3>
+        <p>End-to-end org management — user setup, permission sets, profiles, validation rules, 
+        page layouts, and change management. Your org, clean and optimized.</p>
+        <div class="tag-list">
+          <span class="tag">User Management</span>
+          <span class="tag">Permission Sets</span>
+          <span class="tag">Profiles</span>
+          <span class="tag">Validation Rules</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">⚡</span>
+        <h3>Flow Automation & Process Design</h3>
+        <p>Replace manual work with intelligent automation. Record-triggered flows, 
+        scheduled flows, and screen flows that streamline onboarding, follow-ups, and reporting.</p>
+        <div class="tag-list">
+          <span class="tag">Flow Builder</span>
+          <span class="tag">Record-Triggered</span>
+          <span class="tag">Scheduled Flows</span>
+          <span class="tag">Screen Flows</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">📊</span>
+        <h3>Reports & Dashboards</h3>
+        <p>Turn raw Salesforce data into executive-ready insights. Custom reports, 
+        KPI dashboards, and SOQL-backed analytics that surface what actually matters.</p>
+        <div class="tag-list">
+          <span class="tag">Reports</span>
+          <span class="tag">Dashboards</span>
+          <span class="tag">SOQL</span>
+          <span class="tag">KPI Tracking</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🚀</span>
+        <h3>CRM Implementation & Onboarding</h3>
+        <p>Stand up a new Salesforce org or onboard your team to an existing one. 
+        Requirements gathering, configuration, training, and hypercare support included.</p>
+        <div class="tag-list">
+          <span class="tag">Implementation</span>
+          <span class="tag">Configuration</span>
+          <span class="tag">Training</span>
+          <span class="tag">Adoption</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🔄</span>
+        <h3>Data Migration & Cleanup</h3>
+        <p>Move your data in safely. I handle data imports, deduplication, mapping, 
+        and post-migration validation — minimizing disruption and data loss risk.</p>
+        <div class="tag-list">
+          <span class="tag">Data Import</span>
+          <span class="tag">Migration</span>
+          <span class="tag">Deduplication</span>
+          <span class="tag">Data Quality</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🛡️</span>
+        <h3>Sandbox Testing & Deployments</h3>
+        <p>Move changes from sandbox to production safely with change sets. 
+        I test, document, and deploy with minimal downtime and full rollback planning.</p>
+        <div class="tag-list">
+          <span class="tag">Sandbox</span>
+          <span class="tag">Change Sets</span>
+          <span class="tag">QA Testing</span>
+          <span class="tag">Release Mgmt</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🫱🏿‍🫲🏿</span>
+        <h3>Volunteer & Donor Management</h3>
+        <p>Specialized experience configuring Salesforce for nonprofits via HandsOn Connect — 
+        volunteer tracking, donor pipelines, fund management, and lifecycle automation.</p>
+        <div class="tag-list">
+          <span class="tag">HandsOn Connect</span>
+          <span class="tag">Nonprofit CRM</span>
+          <span class="tag">Donor Mgmt</span>
+          <span class="tag">Fund Tracking</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🔧</span>
+        <h3>Salesforce Troubleshooting & Support</h3>
+        <p>Broken flows, misbehaving automation, SOQL errors, Apex issues — 
+        I diagnose and resolve complex platform problems fast so your team stays productive.</p>
+        <div class="tag-list">
+          <span class="tag">Debugging</span>
+          <span class="tag">Apex Review</span>
+          <span class="tag">SOQL</span>
+          <span class="tag">Escalation Support</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">📋</span>
+        <h3>Ongoing Fractional Admin Support</h3>
+        <p>Not ready for a full-time hire? Retain me on a flexible schedule — 
+        hours per week, monthly retainer, or project milestones. Expert coverage without the overhead.</p>
+        <div class="tag-list">
+          <span class="tag">Retainer</span>
+          <span class="tag">Part-Time Admin</span>
+          <span class="tag">On-Call Support</span>
+          <span class="tag">Remote</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="section-inner">
+    <div class="eyebrow">Proven Impact</div>
+    <h2 class="section-title">Numbers That Speak<br>for Themselves</h2>
+    <div class="divider"></div>
+    <div class="results-grid">
+      <div class="result-card">
+        <span class="result-num">99%</span>
+        <p class="result-desc">Customer satisfaction score maintained across hundreds of Salesforce org implementations</p>
+      </div>
+      <div class="result-card">
+        <span class="result-num">25%</span>
+        <p class="result-desc">Increase in customer retention achieved through improved onboarding workflows and automation</p>
+      </div>
+      <div class="result-card">
+        <span class="result-num">34%</span>
+        <p class="result-desc">Improvement in customer satisfaction within just 6 months via service process redesign</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="eyebrow">Expertise</div>
+    <h2 class="section-title">Skills & Experience</h2>
+    <div class="divider"></div>
+    <div class="skills-layout">
+
+      <div>
+        <div class="skill-group">
+          <div class="skill-group-title">Core Salesforce Administration</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Flow Builder</span>
+            <span class="skill-pill">Custom Objects & Fields</span>
+            <span class="skill-pill">Validation Rules</span>
+            <span class="skill-pill">Page Layouts</span>
+            <span class="skill-pill">User Management</span>
+            <span class="skill-pill">Permission Sets</span>
+            <span class="skill-pill">Profiles & Roles</span>
+            <span class="skill-pill">Record Types</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Automation & Development</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Record-Triggered Flows</span>
+            <span class="skill-pill">Scheduled Flows</span>
+            <span class="skill-pill">Screen Flows</span>
+            <span class="skill-pill">Process Automation</span>
+            <span class="skill-pill">SOQL Querying</span>
+            <span class="skill-pill">Apex Debugging</span>
+            <span class="skill-pill">Apex Minor Modifications</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Data & Deployment</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Data Import & Migration</span>
+            <span class="skill-pill">Data Cleanup</span>
+            <span class="skill-pill">Change Sets</span>
+            <span class="skill-pill">Sandbox Testing</span>
+            <span class="skill-pill">Reports & Dashboards</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Platforms & Specializations</div>
+          <div class="skill-pills">
+            <span class="skill-pill">HandsOn Connect</span>
+            <span class="skill-pill">Volunteer Management</span>
+            <span class="skill-pill">Donor Management</span>
+            <span class="skill-pill">Fund Tracking</span>
+            <span class="skill-pill">Membership Management</span>
+            <span class="skill-pill">Workforce Solutions</span>
+            <span class="skill-pill">Requirements Gathering</span>
+            <span class="skill-pill">CRM Implementation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-timeline">
+        <div class="exp-item">
+          <div class="exp-period">May 2020 – Present</div>
+          <div class="exp-title">CX Manager / Salesforce Solutions Administrator</div>
+          <div class="exp-company">HandsOn Connect — Remote</div>
+          <ul class="exp-bullets">
+            <li>Administer Salesforce environments for volunteer, donor, fund, and job posting solutions</li>
+            <li>Build and maintain Flows automating onboarding, volunteer lifecycle, and reporting workflows</li>
+            <li>Write and optimize SOQL queries for troubleshooting and data validation</li>
+            <li>Led onboarding implementations for hundreds of organizations</li>
+            <li>Maintained 99% customer satisfaction; increased retention by 25%</li>
+            <li>Escalation point for complex Salesforce and platform-related issues</li>
+            <li>Partner with product, engineering, and sales to deliver tailored CRM solutions</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-period">December 2013 – April 2020</div>
+          <div class="exp-title">Customer Success Specialist</div>
+          <div class="exp-company">HandsOn Connect — Remote</div>
+          <ul class="exp-bullets">
+            <li>Managed onboarding, training, and support for Salesforce-based volunteer solutions</li>
+            <li>Served as liaison between customers and internal product teams</li>
+            <li>Consistently exceeded KPIs for response, resolution, and satisfaction</li>
+            <li>Built deep Salesforce expertise that led to promotion into CX leadership</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="section-inner">
+    <div class="eyebrow">Industries Served</div>
+    <h2 class="section-title">I've Worked Across<br>Your Industry</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Deep cross-sector experience means I understand your workflows, compliance needs, and the unique way your team uses Salesforce.</p>
+    <div class="industry-list">
+      <div class="industry-item"><span>🫱🏿‍🫲🏿</span> Nonprofit Organizations</div>
+      <div class="industry-item"><span>🏥</span> Healthcare</div>
+      <div class="industry-item"><span>🎓</span> Education</div>
+      <div class="industry-item"><span>🏢</span> Corporate Enterprise</div>
+      <div class="industry-item"><span>💼</span> Workforce Development</div>
+      <div class="industry-item"><span>🤎</span> Volunteer Programs</div>
+      <div class="industry-item"><span>💰</span> Fundraising & Development</div>
+      <div class="industry-item"><span>🌐</span> Remote-First Organizations</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="eyebrow">How We Work Together</div>
+    <h2 class="section-title">From First Call<br>to Go-Live</h2>
+    <div class="divider"></div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <h4>Discovery Call</h4>
+        <p>We talk through your Salesforce goals, current pain points, and what a successful engagement looks like.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <h4>Scope & Proposal</h4>
+        <p>I send a clear, itemized proposal — deliverables, timeline, and rate. No hidden fees or scope creep surprises.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <h4>Build & Configure</h4>
+        <p>I get to work in your sandbox first, keeping you updated at every milestone before pushing to production.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <h4>Handoff & Support</h4>
+        <p>Full documentation, team training, and a defined support window. You're never left with a black box.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-wrap">
+      <div class="contact-text">
+        <div class="eyebrow">Get in Touch</div>
+        <h2 class="section-title">Let's Talk About<br>Your Project</h2>
+        <div class="divider"></div>
+        <p>Available for short-term projects, long-term contracts, and fractional admin engagements. 
+        I work fully remote and am open to clients across all time zones.</p>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div class="contact-detail-text">
+            <p>Email</p>
+            <a href="mailto:godwin.ogbueze@gmail.com">godwin.ogbueze@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            <p>Location</p>
+            <span>Charlotte, NC — Remote Available Nationwide</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🔗</div>
+          <div class="contact-detail-text">
+            <p>LinkedIn</p>
+            <a href="https://www.linkedin.com/in/godwin-ogbueze" target="_blank">linkedin.com/in/godwin-ogbueze</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">☁️</div>
+          <div class="contact-detail-text">
+            <p>Certification</p>
+            <span>Salesforce Certified Administrator (2021)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-card">
+        <h3>Send Me a Project Brief</h3>
+        <div class="form-group">
+          <label>YOUR NAME</label>
+          <input type="text" placeholder="Jane Smith" />
+        </div>
+        <div class="form-group">
+          <label>EMAIL ADDRESS</label>
+          <input type="email" placeholder="jane@company.com" />
+        </div>
+        <div class="form-group">
+          <label>SERVICE NEEDED</label>
+          <select>
+            <option value="">Select a service…</option>
+            <option>Salesforce Administration</option>
+            <option>Flow Automation & Process Design</option>
+            <option>CRM Implementation & Onboarding</option>
+            <option>Reports & Dashboards</option>
+            <option>Data Migration & Cleanup</option>
+            <option>Sandbox Testing & Deployments</option>
+            <option>Volunteer / Donor Management</option>
+            <option>Ongoing Fractional Admin Support</option>
+            <option>Troubleshooting & Support</option>
+            <option>Other / Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>TELL ME ABOUT YOUR PROJECT</label>
+          <textarea placeholder="What's your Salesforce challenge? What does success look like?"></textarea>
+        </div>
+        <a href="mailto:godwin.ogbueze@gmail.com" class="btn-primary" style="width:100%;text-align:center;display:block;padding:15px;">
+          Send Message →
+        </a>
+        <p style="font-size:0.76rem;color:var(--slate);text-align:center;margin-top:12px;">
+          Typical response within 24 hours
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">GODWIN OGBUEZE</div>
+  <p style="color:var(--slate);font-size:0.82rem;">Salesforce Certified Administrator · Independent Consultant · Charlotte, NC</p>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
